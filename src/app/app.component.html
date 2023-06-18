@@ -9,14 +9,14 @@
     </div>
   </header>
 
-  <section class="top_container">
+  <section class="top_container"  [ngClass]="{ 'black-text': planetName.toLowerCase() === 'bespin' || planetName.toLowerCase() === 'hoth' || planetName.toLowerCase() === 'naboo' }">
     <p id="temp">{{ getWeatherMessage() }} {{ weatherData?.main?.temp }}°C, {{ weatherData?.weather?.[0]?.description }}?</p>
 
   </section>
   
   
 
-  <section class="center_container">
+  <section class="center_container"  [ngClass]="{ 'black-text': planetName.toLowerCase() === 'hoth' }">
     <div class="center_item_1">
       <p class="its_like">It's like</p>
     </div>
@@ -28,7 +28,7 @@
     </div>
   </section>
 
-  <section class="bottom_container">
+  <section class="bottom_container"  [ngClass]="{ 'black-text':planetName.toLowerCase() === 'hoth' }">
     <div class="bottom_item_1">
       <p id="description">{{ planetDescription }}</p>
     </div>
