@@ -1,118 +1,39 @@
-<div class="search">
-  <form #form="ngForm" (submit)="onSubmit()">
-    <input type="text" placeholder="Search City"  name="city"[(ngModel)]="cityName">
-  </form>
+<div class="bg-image" id="image-container" [style.backgroundImage]="'url(' + planetImageSrc + ')'">
+  <header>
+    <div class="header_container">
+      <p>Click me to search:</p>
+      <form (ngSubmit)="onSubmit()" class="search_box">
+        <button type="submit" class="btn_search"><i class="fa fa-search"></i></button>
+        <input type="search" class="input_search" placeholder="Enter a city..." [(ngModel)]="cityName" name="cityName" id="city-search">
+      </form>
+    </div>
+  </header>
+
+  <section class="top_container">
+    <p id="temp">{{ getWeatherMessage() }} {{ weatherData?.main?.temp }}°C, {{ weatherData?.weather?.[0]?.description }}?</p>
+
+  </section>
+  
+  
+
+  <section class="center_container">
+    <div class="center_item_1">
+      <p class="its_like">It's like</p>
+    </div>
+    <div class="center_item_2">
+      <p class="planet_name" id="planet">{{ planetName }}</p>
+    </div>
+    <div class="center_item_3">
+      <p class="out_there">out there.</p>
+    </div>
+  </section>
+
+  <section class="bottom_container">
+    <div class="bottom_item_1">
+      <p id="description">{{ planetDescription }}</p>
+    </div>
+    <div class="bottom_item_2">
+      <p>{{ planetHiddenMessage }}</p>
+    </div>
+  </section>
 </div>
-<div class="container" *ngIf="weatherData">
-  <div class="upper-data">
-   <img src="../assets/hot.png" *ngIf="weatherData.main.temp > 15">
-    <img src="../assets/cold.png" *ngIf="weatherData.main.temp <= 15">
-   <div class="weather-data">
-    <div class="location">{{weatherData.name}}</div>
-    <div class="temperature">{{weatherData.main.temp | number:'1.0-0'}}°C</div>
-   </div>
-  </div>
-  <div class="lower-data">
-    <div class="more-info-label">
-      More Information
-    </div>
-    <div class="more-info-container">
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/min.png">
-          <span>Min</span>
-        </div>
-        <div class="info-block-value">
-          {{weatherData.main.temp_min| number:'1.0-0'}}°C
-        </div>
-      </div>
-
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/max.png">
-          <span>Max</span>
-        </div>
-        <div class="info-block-value">
-          {{weatherData.main.temp_max| number:'1.0-0'}}°C
-        </div>
-      </div>
-
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/humidity.png">
-          <span>humidity</span>
-        </div>
-        <div class="info-block-value">
-          {{weatherData.main.humidity}}%
-        </div>
-      </div>
-
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/wind.png">
-          <span>Wind</span>
-        </div>
-        <div class="info-block-value">
-          {{weatherData.wind.speed}}km/h
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- <div class="container">
-  <div class="upper-data">
-   <img src="../assets/hot.png" *ngIf="14>15">
-    <img src="../assets/cold.png" *ngIf="14<=15">
-   <div class="weather-data">
-    <div class="location">Punjab</div>
-    <div class="temperature">{{14.40 | number:'1.0-0'}}°C</div>
-   </div>
-  </div>
-  <div class="lower-data">
-    <div class="more-info-label">
-      More Information
-    </div>
-    <div class="more-info-container">
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/min.png">
-          <span>Min</span>
-          <div class="info-block-value">
-            10°C
-          </div>
-        </div>
-      </div>
-
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/max.png">
-          <span>Max</span>
-          <div class="info-block-value">
-            20°C
-          </div>
-        </div>
-      </div>
-
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/humidity.png">
-          <span>humidity</span>
-          <div class="info-block-value">
-            77%
-          </div>
-        </div>
-      </div>
-
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/wind.png">
-          <span>Wind</span>
-          <div class="info-block-value">
-            11 km/h
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-<router-outlet></router-outlet>
